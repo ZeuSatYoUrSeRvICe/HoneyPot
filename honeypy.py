@@ -18,7 +18,8 @@ if __name__ == "__main__":
     parser.add_argument('-w', '--http', action="store_true")
     
     args = parser.parse_args()
-    password = os.getenv("HONEYPOT_PASSWORD", "password")
+    password = os.getenv("HONEYPOT_PASSWORD")
+    print(password)
     try:
         if args.ssh:
             print("[-] Running SSH Honeypot...")
@@ -34,8 +35,8 @@ if __name__ == "__main__":
             if not args.username:
                 args.username = "admin"
             if not args.password:
-                args.password = "password"
-            print(f"Port :{args.port}, Username : {args.username}, Password : {args.password}")
+                args.password = password
+            print(f"Port :{args.port}, Username : {args.username}, Password : {password}")
             run_web_honeypot(args.port, args.username, args.password)
             pass
         else:
