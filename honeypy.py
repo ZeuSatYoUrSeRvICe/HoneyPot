@@ -2,6 +2,7 @@
 import argparse   
 from ssh_honeypot import *
 from web_honeypot import *
+import os
 
 # Parse Arguments
 
@@ -17,7 +18,7 @@ if __name__ == "__main__":
     parser.add_argument('-w', '--http', action="store_true")
     
     args = parser.parse_args()
-
+    password = os.getenv("HONEYPOT_PASSWORD", "password")
     try:
         if args.ssh:
             print("[-] Running SSH Honeypot...")
